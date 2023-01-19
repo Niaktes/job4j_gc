@@ -1,2 +1,9 @@
-# job4j_gc
-Garbage Collector &amp; Profiling Tools study project
+## Garbage Collector & Profiling
+### Учебный проект студента job4j Захаренко Сергея
+##### Сборка: Maven 
+##### В данном проекте изучаем работу разных Сборщиков Мусора, представленных в Java,
+##### а также учимся профайлить приложения, искать утечки памяти и т.п.
+##### Контакты студента: 
+> Захаренко Сергей <br>
+email: Sergei.Rabota@gmail.com <br>
+Telegram: @Niaktes <br>
