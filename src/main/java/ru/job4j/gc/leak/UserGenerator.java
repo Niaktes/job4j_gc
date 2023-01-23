@@ -15,11 +15,12 @@ public class UserGenerator implements Generate {
     public static final String SEPARATOR = " ";
     public static final int NEW_USERS = 1000;
 
+    private final List<User> users = new ArrayList<>();
+    private final Random random;
+
     private List<String> names;
     private List<String> surnames;
     private List<String> patrons;
-    private final List<User> users = new ArrayList<>();
-    private final Random random;
 
     public UserGenerator(Random random) {
         this.random = random;
