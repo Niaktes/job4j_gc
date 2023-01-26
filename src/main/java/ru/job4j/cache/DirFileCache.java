@@ -1,10 +1,10 @@
 package ru.job4j.cache;
 
-import java.io.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class DirFileCache extends AbstractCache<String, String> {
-
-    private static final String SEPARATOR = System.lineSeparator();
 
     private final String cachingDir;
 
@@ -13,32 +13,14 @@ public class DirFileCache extends AbstractCache<String, String> {
     }
 
     @Override
-    public String load(String key) {
-        File file = new File(cachingDir, key);
-        validate(file);
-        StringBuilder textFileContent = new StringBuilder();
-        try (BufferedReader reader  = new BufferedReader(new FileReader(file))) {
-            reader.lines()
-                    .forEach(l -> {
-                        textFileContent.append(l);
-                        textFileContent.append(SEPARATOR);
-                    });
+    protected String load(String key) {
+        String textFileContent = null;
+        try {
+            textFileContent = Files.readString(Path.of(cachingDir, key));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return textFileContent.toString();
-    }
-
-    private void validate(File file) {
-        if (!file.getName().endsWith(".txt")) {
-            throw new IllegalArgumentException("Wrong file format! Only .txt files can be loaded.");
-        }
-        if (!file.exists()) {
-            throw new IllegalArgumentException("File doesn't exist!");
-        }
-        if (file.isDirectory()) {
-            throw new IllegalArgumentException("Entered parameter points to directory!");
-        }
+        return textFileContent;
     }
 
 }
